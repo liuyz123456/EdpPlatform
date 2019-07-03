@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.uniedp:license:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/uniedp/license/1.0-SNAPSHOT/license-1.0-20190612.070730-20.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/com/uniedp/license/1.0-SNAPSHOT/license-1.0-20190612.070730-20-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/uniedp/license/1.0-SNAPSHOT/license-1.0-20190612.070730-20-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

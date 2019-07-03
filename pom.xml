@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.2.RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>web</artifactId>
+    <name>web-后台项目</name>
+    <description>后台项目</description>
+    <properties>
+        <uniedp.version>6.0.0</uniedp.version>
+        <docker.plugin.version>1.1.1</docker.plugin.version>
+        <xxl.job.version>2.0.1</xxl.job.version>
+        <logstash.version>5.2</logstash.version>
+    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.uniedp</groupId>
+            <artifactId>frk-core</artifactId>
+            <version>${uniedp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.uniedp</groupId>
+            <artifactId>frk-dynamic-datasource</artifactId>
+            <version>${uniedp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.uniedp</groupId>
+            <artifactId>modules-sys</artifactId>
+            <version>${uniedp.version}</version>
+        </dependency>
+        <!--xxl-job begin -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>${xxl.job.version}</version>
+        </dependency>
+        <!--xxl-job end -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <configuration>
+                    <imageName>uniedp/${project.artifactId}</imageName>
+                    <dockerDirectory>${project.basedir}/</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--maven私服-->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>ecode nexus</name>
+            <url>http://47.105.158.68:8081/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>ecode nexus</name>
+            <url>http://47.105.158.68:8081/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+    <!--定义snapshots库和releases库的nexus地址-->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>
+                http://47.105.158.68:8081/repository/maven-releases/
+            </url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>
+                http://47.105.158.68:8081/repository/maven-snapshots/
+            </url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
