@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>web</artifactId>
     <name>web-后台项目</name>
-    <description>后台项目</description>
+    <description>后台项目测试</description>
     <properties>
         <uniedp.version>6.0.0</uniedp.version>
         <docker.plugin.version>1.1.1</docker.plugin.version>
